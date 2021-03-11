@@ -1,7 +1,8 @@
 import React from 'react'
 import {FaSnowflake} from 'react-icons/fa'
 import hotWater from '../assets/boiling.png'
-const OutputDisplay = ({dynamicBgd, dynamicColor, freezing, boiling, convertedTemp, outputUnit}) => {
+const OutputDisplay = ({
+     dynamicBgd, freezing, boiling}) => {
     return (
         <div
           className="output-display"
@@ -9,18 +10,10 @@ const OutputDisplay = ({dynamicBgd, dynamicColor, freezing, boiling, convertedTe
         >
           <div className="output-info" >
                     <div className="output-icons" >
-                    {freezing &&  <FaSnowflake size={35} color="white"/>}
+                    {freezing &&  <FaSnowflake size={35} color="grey"/>}
                     {boiling && <img src={hotWater} alt="" style={{width:55}}/>}
                     </div>
-            <h4
-              style={{
-                color: dynamicColor,
-              }}
-            >
-                {convertedTemp.toFixed(1)}º{outputUnit}
-            </h4>
-            </div>
-          
+                </div>
         </div>
     )
 }

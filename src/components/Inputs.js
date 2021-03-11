@@ -1,39 +1,48 @@
 import React from 'react'
 
-const Inputs = ({inputTemp, handleInput, toggleUnit, min, max}) => {
+const Inputs = ({farenheit, minC, minF, maxC, maxF, celcius, dynamicColor, handleFInput, handleCInput}) => {
+
     return (
-        <>
+        <div className="inputs" >
+        <div className="num-inputs-container">
+
         <div className="input-box">
         <input
-          className="number-input"
-          value={inputTemp}
-          onChange={handleInput}
+          value={celcius}
+          onChange={handleCInput}
+          name="celcius"
           type="number"
+          style={{
+            color: dynamicColor,
+          }}
         />
-        <div class="toggle-switch">
+        <h2>ºC</h2>
+        </div>
+          <div className="input-box">
           <input
-            onChange={toggleUnit}
-            type="checkbox"
-            class="toggle-switch-checkbox"
-            name="toggleSwitch"
-            id="toggleSwitch"
-          />
-          <label class="toggle-switch-label" for="toggleSwitch">
-            <span class="toggle-switch-inner"></span>
-            <span class="toggle-switch-switch"></span>
-          </label>
+          value={farenheit}
+          onChange={handleFInput}
+          type="number"
+          name="farenheit"
+          style={{
+            color: dynamicColor,
+          }}
+        />
+        <h2>ºF</h2>
         </div>
       </div>
-      <hr />
+     
       <input
         className="range-input"
-        min={min}
-        max={max}
+        min={minC}
+        max={maxC}
         type="range"
-        value={inputTemp}
-        onChange={handleInput}
+        value={celcius}
+        onChange={handleCInput}
+        orient="vertical"
       />
-      </>
+      
+      </div>
     )
 }
 

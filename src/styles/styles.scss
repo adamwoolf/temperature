@@ -11,6 +11,7 @@ body{
     font-family: 'Comfortaa', cursive;
 }
 
+
 .contents{
     padding: 50px;
     @include flexDisplay(column);
@@ -26,7 +27,7 @@ body{
 
  .info-window{
      text-align: center;
-     background-color: rgba(255, 255, 255, .69);
+     background-color: rgba(255, 255, 255, .79);
      width: 100%;
      border-radius: 25px;
      padding: 25px;
@@ -36,115 +37,51 @@ body{
      }
  }
 
- .number-input{
-     border: none;
-     outline: none;
-     font-size: 1.3rem;
-     border-radius: 10px;
-     text-align: center;
-     width: 90px;
+ .inputs{
+     display: flex;
  }
 
- .range-input{
-     width: 80%;
+ .num-inputs-container{
+     display: flex;
+     flex-direction: column;
+     width: 270px;
+ }
+
+ input[type=number]{
+     margin-bottom: 10px;
+     border: none;
+     outline: none;
+     font-size: 2.5rem;
+     border-radius: 10px;
+     text-align: center;
+     width: 110px;
+     color: rgb(94, 92, 92);
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+        } 
+ }
+
+ input[type=range]{
+    -webkit-appearance: slider-vertical;
  }
 
   .input-box{
     //   background-color: #fff;
       display: flex;
+      align-items: center;
       width: 80%;
       margin: auto;
       justify-content: center;
 
       & input{
-          margin: 0 7px;
+          margin: 10px 7px;
       }
   }
 
-.toggle-switch {
-    position: relative;
-    width: 75px;
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    text-align: left;
-    &-checkbox {
-      display: none;
-    }
-    &-label {
-      display: block;
-      overflow: hidden;
-      cursor: pointer;
-      border: 0 solid #bbb;
-      border-radius: 20px;
-      margin: 0;
-    }
-    &-inner {
-      display: block;
-      width: 200%;
-      margin-left: -100%;
-      transition: margin 0.3s ease-in 0s;
-      &:before,
-      &:after {
-        display: block;
-        float: left;
-        width: 50%;
-        height: 34px;
-        padding: 0;
-        line-height: 34px;
-        font-size: 14px;
-        color: white;
-        font-weight: bold;
-        box-sizing: border-box;
-      }
-      &:before {
-        content: "ºF";
-        text-transform: uppercase;
-        padding-left: 10px;
-        background-color: #f90;
-        color: #fff;
-      }
-    }
-    &-disabled {
-      background-color: #ddd;
-      cursor: not-allowed;
-      &:before {
-        background-color: #ddd;
-        cursor: not-allowed;
-      }
-    }
-    &-inner:after {
-      content: "ºC";
-      text-transform: uppercase;
-      padding-right: 10px;
-      background-color: rgb(104, 172, 16);
-      color: #fff;
-      text-align: right;
-    }
-    &-switch {
-      display: block;
-      width: 24px;
-      margin: 5px;
-      background: #fff;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 40px;
-      border: 0 solid #bbb;
-      border-radius: 20px;
-      transition: all 0.3s ease-in 0s;
-    }
-    &-checkbox:checked + &-label {
-      .toggle-switch-inner {
-        margin-left: 0;
-      }
-      .toggle-switch-switch {
-        right: 0px;
-      }
-    }
-  }
 
   .input-display{
     width: 100%;
@@ -167,13 +104,13 @@ body{
       width: 100%;
       @include flexDisplay(row);
       border-radius: 25px;
-      height: 200px;
+      height: 100px;
       transition: 300ms;
   }
 
   .output-info{
     font-size: 3rem;
-    background-color: rgba(255, 255, 255, .59);
+    background-color: rgba(255, 255, 255, .89);
     width: 100%;
     height: 100%;
     border-radius: 25px;
@@ -182,10 +119,6 @@ body{
     align-items: center;
     flex-direction: column;
     overflow: hidden;
-
-    & h4{
-        margin-top: -10px;
-    }
   }
 
   .output-icons{

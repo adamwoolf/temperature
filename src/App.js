@@ -22,155 +22,105 @@ const yetMoreFire =
 
 
 function App() {
-  const [inputUnit, setInputUnit] = useState("C");
-  const [outputUnit, setOutputUnit] = useState("F");
-  const [inputTemp, setInputTemp] = useState(0);
+
+  const [inputTemp, setInputTemp] = useState('');
+  const [farenheit, setFarenheit] = useState('')
+  const [celcius, setCelcius] = useState('')
+
   const [convertedTemp, setConvertedTemp] = useState(inputTemp * 1.8 + 32);
-  const [min, setMin] = useState(-100);
-  const [max, setMax] = useState(1000);
+  const [minC, setMinC] = useState(-100);
+  const [minF, setMinF] = useState(-148);
+  const [maxC, setMaxC] = useState(1000);
+  const [maxF, setMaxF] = useState(1832);
   const [dynamicBgd, setDynamicBgd] = useState(morning);
-  const [dynamicColor, setDynamicColor] = useState("black");
   const [freezing, setFreezing] = useState(false)
   const [boiling, setBoiling] = useState(false)
 
-  const handleInput = (e) => {
-    setInputTemp(+e.target.value);
-    let tempToConvert = inputTemp;
-    if (inputUnit === "C") {
-      setConvertedTemp(tempToConvert * 1.8 + 32);
-      if (inputTemp <= 0) {
-        setDynamicColor("blue");
+  const handleCelciusInput = (e) => {
+      setCelcius(e.target.value)
+      setFarenheit(e.target.value * 1.8 + 32)  
+      manageTheme()  
+      
+  };
+
+  const handleFarenheitInput = (e) => {
+setFarenheit(e.target.value)
+setCelcius((e.target.value - 32) / 1.8)
+manageTheme()
+  }
+
+  const manageTheme = () => {
+   
+      if (celcius <= 0) {
         setDynamicBgd(ice);
         setFreezing(true)
       }
-      if (inputTemp > 0 && inputTemp <= 45) {
-        setDynamicColor("green");
-        setDynamicBgd(morning);
-        setFreezing(false)
-        setBoiling(false)
-
-      }
-      if (inputTemp > 45 && inputTemp <= 75) {
-        setDynamicColor("yellow");
-        setDynamicBgd(warm);
-        setBoiling(false)
-        setFreezing(false)
-
-      }
-      if (inputTemp > 75 && inputTemp <= 100) {
-        setDynamicColor("gold");
-        setDynamicBgd(hot);
-        setBoiling(false)
-        setFreezing(false)
-
-      }
-      if (inputTemp > 100) {
-        setDynamicColor("red");
-        setDynamicBgd(fire);
-        setBoiling(true)
-        setFreezing(false)
-      }
-      if (inputTemp > 200) {
-        setDynamicColor("red");
-        setDynamicBgd(moreFire);
-        setBoiling(true)
-        setFreezing(false)
-      }
-      if (inputTemp > 300) {
-        setDynamicColor("red");
-        setDynamicBgd(yetMoreFire);
-        setBoiling(true)
-        setFreezing(false)
-      }
-    } else {
-      setConvertedTemp((tempToConvert - 32) / 1.8);
-      if (convertedTemp <= 0) {
-        setDynamicColor("blue");
-        setDynamicBgd(ice);
-        setFreezing(true)
-        setBoiling(false)
-      }
-      if (convertedTemp > 0 && convertedTemp <= 45) {
-        setDynamicColor("green");
+      if (celcius > 0 && inputTemp <= 45) {
         setDynamicBgd(morning);
         setFreezing(false)
         setBoiling(false)
       }
-      if (convertedTemp > 45 && convertedTemp <= 75) {
-        setDynamicColor("yellow");
+      if (celcius > 45 && inputTemp <= 75) {
         setDynamicBgd(warm);
         setBoiling(false)
         setFreezing(false)
       }
-      if (convertedTemp > 75 && convertedTemp <= 100) {
-        setDynamicColor("gold");
+      if (celcius > 75 && inputTemp <= 100) {
         setDynamicBgd(hot);
         setBoiling(false)
         setFreezing(false)
       }
-      if (convertedTemp > 100) {
-        setDynamicColor("red");
+      if (celcius > 100) {
         setDynamicBgd(fire);
         setBoiling(true)
         setFreezing(false)
       }
-      if (convertedTemp > 200) {
-        setDynamicColor("red");
+      if (celcius > 200) {
         setDynamicBgd(moreFire);
         setBoiling(true)
         setFreezing(false)
       }
-      if (convertedTemp > 300) {
-        setDynamicColor("red");
+      if (celcius > 300) {
         setDynamicBgd(yetMoreFire);
         setBoiling(true)
         setFreezing(false)
       }
-    }
-  };
+    } 
+  
 
-  const toggleUnit = () => {
-    const currentInput = inputTemp;
-    const currentConverted = convertedTemp;
-    if (inputUnit === "C") {
-      setInputUnit("F");
-      setOutputUnit("C");
-      setConvertedTemp(currentInput);
-      setInputTemp(+currentConverted.toFixed(2));
-    } else {
-      setInputUnit("C");
-      setOutputUnit("F");
-      setConvertedTemp(currentInput);
-      setInputTemp(+currentConverted.toFixed(2));
-    }
-  };
+  
+
 
   return (
     <div className="contents" style={{ backgroundImage: `url(${dynamicBgd})` }}>
       <div className="info-window">
         <h1>Temperature Converter</h1>
+        <div className="inputs" >
+          <div style={{width:230}}>
         <Inputs
-        inputTemp={inputTemp}
-        handleInput={handleInput}
-        toggleUnit={toggleUnit}
-        min={min}
-        max={max}
+        celcius={celcius}
+        farenheit={farenheit}
+        handleCInput={handleCelciusInput}
+        handleFInput={handleFarenheitInput}
+        dynamicColor={`rgb(${celcius},50,${250 - celcius})`}
+        minC={minC}
+        maxC={maxC}
+        minF={minF}
+        maxF={maxF}
         />
-       
-        <div className="input-display" >
-            <h2>
-              {inputTemp.toFixed(1)} º{inputUnit}
-            </h2>
-        </div>
+        <div style={{marginTop:25}} >
         <OutputDisplay
-        dynamicColor={dynamicColor}
+        // dynamicColor={`rgb(${inputTemp},20,${250 - inputTemp})`}
         freezing={freezing}
         boiling={boiling}
         dynamicBgd={dynamicBgd}
-        convertedTemp={convertedTemp}
-        outputUnit={outputUnit}
+        // inputTemp={inputTemp}
+        // farenheit={farenheit}
         />
-        
+      </div>
+      </div>
+      
+      </div>
       </div>
     </div>
   );
