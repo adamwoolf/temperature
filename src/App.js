@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import "./styles/styles.css";
 import OutputDisplay from "./components/OutputDisplay";
 import Inputs from "./components/Inputs";
@@ -18,51 +18,54 @@ const moreFire =
 const yetMoreFire =
   "https://images.unsplash.com/photo-1612881177996-23adb4bb5a74?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Njd8fGZsYW1lc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60";
 
+const minF = -148;
+const minC = -100;
+const maxF = 1832;
+const maxC = 1000;
+
+const initialState = {
+  fahrenheit: '',
+  celsius: '',
+  dynamicBgd: morning,
+};
+
+const getSkin = (celsius) => {
+  try {
+    const parsedCelsius = parseFloat(celsius);
+    if (parsedCelsius > 300) return yetMoreFire;
+    else if (parsedCelsius > 200) return moreFire;
+    else if (parsedCelsius > 100) return fire;
+    else if (parsedCelsius > 75) return hot;
+    else if (parsedCelsius > 45) return warm;
+    else if (parsedCelsius > 0) return morning;
+    else return ice;
+  } catch {
+    return morning;
+  }
+};
+
+const reducer = (state, { type, payload}) => {
+  switch (type) {
+    case 'fahrenheit':
+      const celsius = (payload - 32) / 1.8;
+      return {
+        celsius,
+        fahrenheit: payload,
+        dynamicBgd: getSkin(celsius),
+      };
+    case 'celsius':
+      return {
+        celsius: payload,
+        fahrenheit: payload * 1.8 + 32,
+        dynamicBgd: getSkin(payload),
+      };
+    default:
+      return state;
+  }
+};
+
 function App() {
-  const [inputTemp, setInputTemp] = useState("");
-  const [farenheit, setFarenheit] = useState("");
-  const [celcius, setCelcius] = useState("");
-  const [dynamicBgd, setDynamicBgd] = useState(morning);
-  const minF = -148;
-  const minC = -100;
-  const maxF = 1832;
-  const maxC = 1000;
-
-  const handleCelciusInput = (e) => {
-    setCelcius(e.target.value);
-    setFarenheit(e.target.value * 1.8 + 32);
-    manageSkin();
-  };
-
-  const handleFarenheitInput = (e) => {
-    setFarenheit(e.target.value);
-    setCelcius((e.target.value - 32) / 1.8);
-    manageSkin();
-  };
-
-  const manageSkin = () => {
-    if (celcius <= 0) {
-      setDynamicBgd(ice);
-    }
-    if (celcius > 0 && inputTemp <= 45) {
-      setDynamicBgd(morning);
-    }
-    if (celcius > 45 && inputTemp <= 75) {
-      setDynamicBgd(warm);
-    }
-    if (celcius > 75 && inputTemp <= 100) {
-      setDynamicBgd(hot);
-    }
-    if (celcius > 100) {
-      setDynamicBgd(fire);
-    }
-    if (celcius > 200) {
-      setDynamicBgd(moreFire);
-    }
-    if (celcius > 300) {
-      setDynamicBgd(yetMoreFire);
-    }
-  };
+  const [{celsius, fahrenheit, dynamicBgd }, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="contents" style={{ backgroundImage: `url(${dynamicBgd})` }}>
@@ -71,11 +74,11 @@ function App() {
         <div className="inputs">
           <div style={{ width: 230 }}>
             <Inputs
-              celcius={celcius}
-              farenheit={farenheit}
-              handleCInput={handleCelciusInput}
-              handleFInput={handleFarenheitInput}
-              dynamicColor={`rgb(${celcius},50,${250 - celcius})`}
+              celsius={celsius}
+              fahrenheit={fahrenheit}
+              handleCInput={({target: {value : payload }}) => dispatch({ type: 'celsius', payload})}
+              handleFInput={({target: {value : payload }}) => dispatch({ type: 'fahrenheit', payload})}
+              dynamicColor={`rgb(${celsius},50,${250 - celsius})`}
               minC={minC}
               maxC={maxC}
               minF={minF}
@@ -85,8 +88,8 @@ function App() {
         </div>
         <div style={{ marginTop: 25 }}>
           <OutputDisplay
-            dynamicColor={`rgb(${celcius},20,${250 - celcius})`}
-            celcius={celcius}
+            dynamicColor={`rgb(${celsius},20,${250 - celsius})`}
+            celsius={celsius}
             dynamicBgd={dynamicBgd}
           />
         </div>
