@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap");
 body {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
 }
 
 .contents {
@@ -58,7 +58,7 @@ body {
   width: 270px;
 }
 
-input[type=number] {
+input[type="number"] {
   margin-bottom: 10px;
   border: none;
   outline: none;
@@ -69,14 +69,14 @@ input[type=number] {
   color: #5e5c5c;
 }
 
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   margin: 0;
 }
 
-input[type=range] {
+input[type="range"] {
   -webkit-appearance: slider-vertical;
 }
 

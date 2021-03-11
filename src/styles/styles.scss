@@ -1,128 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap");
 
 @mixin flexDisplay($direction) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: $direction
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
 }
 
-body{
-    font-family: 'Comfortaa', cursive;
+body {
+  font-family: "Comfortaa", cursive;
 }
 
+.contents {
+  padding: 50px;
+  @include flexDisplay(column);
+  border-radius: 25px;
+  width: 300px;
+  margin: 20px auto;
+  box-shadow: 5px 2px 5px;
+  transition: 400ms;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
-.contents{
-    padding: 50px;
-    @include flexDisplay(column);
-    border-radius: 25px;    
-    width: 300px;
-    margin: 20px auto;
-    box-shadow: 5px 2px 5px;
-    transition: 400ms;
-    background-size: cover;
-    background-repeat: no-repeat;
- }
+.info-window {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.79);
+  width: 100%;
+  border-radius: 25px;
+  padding: 25px;
 
- .info-window{
-     text-align: center;
-     background-color: rgba(255, 255, 255, .79);
-     width: 100%;
-     border-radius: 25px;
-     padding: 25px;
-
-     h1{
-        font-weight: 300;
-     }
- }
-
- .inputs{
-     display: flex;
- }
-
- .num-inputs-container{
-     display: flex;
-     flex-direction: column;
-     width: 270px;
- }
-
- input[type=number]{
-     margin-bottom: 10px;
-     border: none;
-     outline: none;
-     font-size: 2.5rem;
-     border-radius: 10px;
-     text-align: center;
-     width: 110px;
-     color: rgb(94, 92, 92);
-      &::-webkit-inner-spin-button,
-      &::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        margin: 0;
-        } 
- }
-
- input[type=range]{
-    -webkit-appearance: slider-vertical;
- }
-
-  .input-box{
-      display: flex;
-      align-items: center;
-      width: 80%;
-      margin: auto;
-      justify-content: center;
-
-      & input{
-          margin: 10px 7px;
-      }
+  h1 {
+    font-weight: 300;
   }
+}
 
+.inputs {
+  display: flex;
+}
 
-  .input-display{
+.num-inputs-container {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+}
+
+input[type="number"] {
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  font-size: 2.5rem;
+  border-radius: 10px;
+  text-align: center;
+  width: 110px;
+  color: rgb(94, 92, 92);
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: slider-vertical;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+
+  & input {
+    margin: 10px 7px;
+  }
+}
+
+.input-display {
+  width: 100%;
+  @include flexDisplay(column);
+  border-radius: 25px;
+  height: 150px;
+  transition: 300ms;
+
+  & h4 {
+    font-size: 3rem;
+    background-color: rgba(255, 255, 255, 0.59);
     width: 100%;
-    @include flexDisplay(column);
+    height: 60%;
     border-radius: 25px;
-    height: 150px;
-    transition: 300ms;
-
-    & h4{
-        font-size: 3rem;
-        background-color: rgba(255, 255, 255, .59);
-        width: 100%;
-        height: 60%;
-        border-radius: 25px;
-      @include flexDisplay(column)
-    }
+    @include flexDisplay(column);
+  }
 }
 
-  .output-display{
-      width: 100%;
-      @include flexDisplay(row);
-      border-radius: 25px;
-      height: 100px;
-      transition: 300ms;
-  }
+.output-display {
+  width: 100%;
+  @include flexDisplay(row);
+  border-radius: 25px;
+  height: 100px;
+  transition: 300ms;
+}
 
-  .output-info{
-    background-color: rgba(255, 255, 255, .79);
-    width: 100%;
-    height: 100%;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-//   .output-icons{
-//       margin-top: 20px;
-//       height: 100px;
-//       display: flex;
-//       align-items: center;
-//   }
-
- 
+.output-info {
+  background-color: rgba(255, 255, 255, 0.79);
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
