@@ -26,64 +26,52 @@ function App() {
   const [inputTemp, setInputTemp] = useState('');
   const [farenheit, setFarenheit] = useState('')
   const [celcius, setCelcius] = useState('')
-
-  const [convertedTemp, setConvertedTemp] = useState(inputTemp * 1.8 + 32);
-  const [minC, setMinC] = useState(-100);
-  const [minF, setMinF] = useState(-148);
-  const [maxC, setMaxC] = useState(1000);
-  const [maxF, setMaxF] = useState(1832);
   const [dynamicBgd, setDynamicBgd] = useState(morning);
-  const [freezing, setFreezing] = useState(false)
-  const [boiling, setBoiling] = useState(false)
+  const minF = -148
+  const minC = -100
+  const maxF = 1832
+  const maxC = 1000
+
 
   const handleCelciusInput = (e) => {
       setCelcius(e.target.value)
       setFarenheit(e.target.value * 1.8 + 32)  
-      manageTheme()  
-      
+      manageSkin()  
   };
 
   const handleFarenheitInput = (e) => {
-setFarenheit(e.target.value)
-setCelcius((e.target.value - 32) / 1.8)
-manageTheme()
+      setFarenheit(e.target.value)
+      setCelcius((e.target.value - 32) / 1.8)
+      manageSkin()
   }
 
-  const manageTheme = () => {
-   
+  const manageSkin = () => {
       if (celcius <= 0) {
         setDynamicBgd(ice);
-        setFreezing(true)
       }
       if (celcius > 0 && inputTemp <= 45) {
         setDynamicBgd(morning);
-        setFreezing(false)
-        setBoiling(false)
+       
       }
       if (celcius > 45 && inputTemp <= 75) {
         setDynamicBgd(warm);
-        setBoiling(false)
-        setFreezing(false)
+        
       }
       if (celcius > 75 && inputTemp <= 100) {
         setDynamicBgd(hot);
-        setBoiling(false)
-        setFreezing(false)
+       
       }
       if (celcius > 100) {
         setDynamicBgd(fire);
-        setBoiling(true)
-        setFreezing(false)
+      
       }
       if (celcius > 200) {
         setDynamicBgd(moreFire);
-        setBoiling(true)
-        setFreezing(false)
+     
       }
       if (celcius > 300) {
         setDynamicBgd(yetMoreFire);
-        setBoiling(true)
-        setFreezing(false)
+       
       }
     } 
   
@@ -97,29 +85,25 @@ manageTheme()
         <h1>Temperature Converter</h1>
         <div className="inputs" >
           <div style={{width:230}}>
-        <Inputs
-        celcius={celcius}
-        farenheit={farenheit}
-        handleCInput={handleCelciusInput}
-        handleFInput={handleFarenheitInput}
-        dynamicColor={`rgb(${celcius},50,${250 - celcius})`}
-        minC={minC}
-        maxC={maxC}
-        minF={minF}
-        maxF={maxF}
-        />
-        <div style={{marginTop:25}} >
+            <Inputs
+            celcius={celcius}
+            farenheit={farenheit}
+            handleCInput={handleCelciusInput}
+            handleFInput={handleFarenheitInput}
+            dynamicColor={`rgb(${celcius},50,${250 - celcius})`}
+            minC={minC}
+            maxC={maxC}
+            minF={minF}
+            maxF={maxF}
+            />
+          </div>
+      </div>
+      <div style={{marginTop:25}} >
         <OutputDisplay
-        // dynamicColor={`rgb(${inputTemp},20,${250 - inputTemp})`}
-        freezing={freezing}
-        boiling={boiling}
+        dynamicColor={`rgb(${celcius},20,${250 - celcius})`}
+       celcius={celcius}
         dynamicBgd={dynamicBgd}
-        // inputTemp={inputTemp}
-        // farenheit={farenheit}
         />
-      </div>
-      </div>
-      
       </div>
       </div>
     </div>
