@@ -1,12 +1,10 @@
 import React from "react";
 
 const Inputs = ({
-  farenheit,
+  fahrenheit,
   minC,
-  minF,
   maxC,
-  maxF,
-  celcius,
+  celsius,
   dynamicColor,
   handleFInput,
   handleCInput,
@@ -16,9 +14,9 @@ const Inputs = ({
       <div className="num-inputs-container">
         <div className="input-box">
           <input
-            value={celcius}
+            value={celsius}
             onChange={handleCInput}
-            name="celcius"
+            name="celsius"
             type="number"
             style={{
               color: dynamicColor,
@@ -28,10 +26,10 @@ const Inputs = ({
         </div>
         <div className="input-box">
           <input
-            value={farenheit}
+            value={fahrenheit}
             onChange={handleFInput}
             type="number"
-            name="farenheit"
+            name="fahrenheit"
             style={{
               color: dynamicColor,
             }}
@@ -45,7 +43,7 @@ const Inputs = ({
         min={minC}
         max={maxC}
         type="range"
-        value={celcius}
+        value={celsius}
         onChange={handleCInput}
         orient="vertical"
       />
