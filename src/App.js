@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./styles/styles.css";
-
 import OutputDisplay from "./components/OutputDisplay";
 import Inputs from "./components/Inputs";
+
 const ice =
   "https://images.unsplash.com/photo-1549661465-2240e7f0ff18?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTZ8fGljZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60";
 const morning =
@@ -13,12 +13,10 @@ const warm =
   "https://images.unsplash.com/photo-1604079681864-c6fbd7eb109c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTR8fHJlZCUyMGJ1cm5pbmclMjBiYWNrZ3JvdW5kfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60";
 const fire =
   "https://images.unsplash.com/photo-1609378800753-6a3c08233b51?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTV8fHJlZCUyMGJ1cm5pbmclMjBiYWNrZ3JvdW5kfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60";
-
 const moreFire = 
-"https://images.unsplash.com/photo-1574105760686-1399492ce94b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTV8fGZsYW1lc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
-
+  "https://images.unsplash.com/photo-1495951863312-2a5268b2b4b9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8aGVhdCUyMHJlZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60";
 const yetMoreFire = 
-"https://images.unsplash.com/photo-1612881177996-23adb4bb5a74?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Njd8fGZsYW1lc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+  "https://images.unsplash.com/photo-1612881177996-23adb4bb5a74?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Njd8fGZsYW1lc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60";
 
 
 function App() {
@@ -51,34 +49,24 @@ function App() {
       }
       if (celcius > 0 && inputTemp <= 45) {
         setDynamicBgd(morning);
-       
       }
       if (celcius > 45 && inputTemp <= 75) {
-        setDynamicBgd(warm);
-        
+        setDynamicBgd(warm);   
       }
       if (celcius > 75 && inputTemp <= 100) {
         setDynamicBgd(hot);
-       
       }
       if (celcius > 100) {
         setDynamicBgd(fire);
-      
       }
       if (celcius > 200) {
         setDynamicBgd(moreFire);
-     
       }
       if (celcius > 300) {
         setDynamicBgd(yetMoreFire);
-       
       }
     } 
   
-
-  
-
-
   return (
     <div className="contents" style={{ backgroundImage: `url(${dynamicBgd})` }}>
       <div className="info-window">
